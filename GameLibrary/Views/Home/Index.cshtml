@@ -1,1 +1,8 @@
-﻿<h4>Welcome to SportsStore</h4>
+﻿@model IQueryable<Game>
+@foreach (var p in Model ?? Enumerable.Empty<Game>())
+{
+	<div>
+		<h3>@p.Name</h3>
+		@p.Developer
+	</div>
+}

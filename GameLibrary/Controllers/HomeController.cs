@@ -1,8 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-namespace SportsStore.Controllers
+using GameLibrary.Models;
+
+namespace GameLibrary.Controllers
 {
 	public class HomeController : Controller
 	{
-		public IActionResult Index() => View();
+		private ILibRepository repository;
+		public HomeController(ILibRepository repo)
+		{
+			repository = repo;
+		}
+		public IActionResult Index() => View(repository.Games);
 	}
 }

@@ -7,6 +7,8 @@
 		{
 			context = ctx;
 		}
-		public IQueryable<Game> Games => context.Games;
+		public IQueryable<Game> Game => context.Game;
+		public IQueryable<Genre> Genre => context.Genre;
+		public IQueryable<Developer> Developer => context.Developer;
 	}
 }

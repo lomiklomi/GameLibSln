@@ -2,6 +2,8 @@
 {
 	public interface ILibRepository
 	{
-		IQueryable<Game> Games { get; }
+		IQueryable<Game> Game { get; }
+		IQueryable<Genre> Genre { get; }
+		IQueryable<Developer> Developer { get; }
 	}
 }

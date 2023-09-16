@@ -24,25 +24,95 @@ namespace GameLibrary.Migrations
 
             modelBuilder.Entity("GameLibrary.Models.Game", b =>
                 {
-                    b.Property<long?>("GameID")
+                    b.Property<long?>("GameId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long?>("GameID"));
-
-                    b.Property<string>("Developer")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long?>("GameId"), 1L, 1);
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("GameID");
+					b.Property<string>("GenreId")
+						.HasColumnType("bigint");
 
-                    b.ToTable("Games");
+					b.Property<string>("DeveloperId")
+						.HasColumnType("bigint");
+
+					b.HasKey("GameId");
+
+					b.HasIndex("GenreId");
+
+					b.HasIndex("DeveloperId");
+
+                    b.ToTable("Game");
                 });
+
+			modelBuilder.Entity("GameLibrary.Models.Developer", b =>
+			{
+				b.Property<long?>("DeveloperId")
+					.ValueGeneratedOnAdd()
+					.HasColumnType("bigint");
+
+				SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long?>("DeveloperId"), 1L, 1);
+
+				b.Property<string>("Name")
+					.IsRequired()
+					.HasColumnType("nvarchar(max)");
+
+				b.HasKey("DeveloperId");
+
+				b.ToTable("Developer");
+			});
+
+			modelBuilder.Entity("GameLibrary.Models.Genre", b =>
+			{
+				b.Property<long?>("GenreId")
+					.ValueGeneratedOnAdd()
+					.HasColumnType("bigint");
+
+				SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("GenreId"), 1L, 1);
+
+				b.Property<string>("Name")
+					.IsRequired()
+					.HasColumnType("nvarchar(max)");
+
+				b.HasKey("GenreId");
+
+				b.ToTable("Genre");
+			});
+
+			modelBuilder.Entity("WebApp.Models.Game", b =>
+			{
+				b.HasOne("WebApp.Models.Genre", "Genre")
+					.WithMany("Game")
+					.HasForeignKey("GenreId")
+					.OnDelete(DeleteBehavior.Cascade)
+					.IsRequired();
+
+				b.HasOne("WebApp.Models.Developer", "Developer")
+					.WithMany("Game")
+					.HasForeignKey("DeveloperId")
+					.OnDelete(DeleteBehavior.Cascade)
+					.IsRequired();
+
+				b.Navigation("Genre");
+
+				b.Navigation("Developer");
+			});
+
+			modelBuilder.Entity("WebApp.Models.Genre", b =>
+			{
+				b.Navigation("Game");
+			});
+
+			modelBuilder.Entity("WebApp.Models.Dveloper", b =>
+			{
+				b.Navigation("Game");
+			});
+
 #pragma warning restore 612, 618
-        }
+		}
     }
 }

@@ -10,6 +10,6 @@ namespace GameLibrary.Controllers
 		{
 			repository = repo;
 		}
-		public IActionResult Index() => View(repository.Games);
+		public IActionResult Index() => View(repository.Game);
 	}
 }

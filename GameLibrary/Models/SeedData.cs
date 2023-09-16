@@ -11,7 +11,7 @@ namespace GameLibrary.Models
 			{
 				context.Database.Migrate();
 			}
-			if (!context.Games.Any())
+			if (!context.Game.Any())
 			{
 
 				Developer s1 = new Developer { Name = "Bohemia Interactive" };
@@ -39,7 +39,7 @@ namespace GameLibrary.Models
 				Genre c11 = new Genre { Name = "2D" };
 
 
-				context.Games.AddRange(
+				context.Game.AddRange(
 				new Game
 				{
 					Name = "Arma 3",

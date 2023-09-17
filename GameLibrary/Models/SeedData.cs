@@ -3,15 +3,11 @@ namespace GameLibrary.Models
 {
 	public static class SeedData
 	{
-		public static void EnsurePopulated(IApplicationBuilder app)
+		public static void SeedDatabase(LibDbContext context)
 		{
-			LibDbContext context = app.ApplicationServices
-				.CreateScope().ServiceProvider.GetRequiredService<LibDbContext>();
-			if (context.Database.GetPendingMigrations().Any())
-			{
-				context.Database.Migrate();
-			}
-			if (!context.Game.Any())
+			context.Database.Migrate();
+			if (context.Game.Count() == 0 && context.Developer.Count() == 0
+					&& context.Genre.Count() == 0)
 			{
 
 				Developer s1 = new Developer { Name = "Bohemia Interactive" };

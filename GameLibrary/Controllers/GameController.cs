@@ -35,7 +35,7 @@ namespace GameLibrary.Controllers
 
 		[HttpPost]
 		public async Task<IActionResult>
-			SaveProduct(GameBindingTarget target)
+			SaveGame(GameBindingTarget target)
 		{
 			Game p = target.ToGame();
 			await context.Game.AddAsync(p);
@@ -46,7 +46,7 @@ namespace GameLibrary.Controllers
 		[HttpPut]
 		public async Task UpdateGame(Game game)
 		{
-			context.Game.Update(game);
+			context.Update(game);
 			await context.SaveChangesAsync();
 		}
 

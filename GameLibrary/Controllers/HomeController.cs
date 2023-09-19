@@ -5,11 +5,14 @@ namespace GameLibrary.Controllers
 {
 	public class HomeController : Controller
 	{
-		private ILibRepository repository;
-		public HomeController(ILibRepository repo)
+		private LibDbContext context;
+		public HomeController(LibDbContext ctx)
 		{
-			repository = repo;
+			context = ctx;
 		}
-		public IActionResult Index() => View(repository.Game);
+		public async Task<IActionResult> Index(long id = 1)
+		{
+			return View(await context.Game.FindAsync(id));
+		}
 	}
 }

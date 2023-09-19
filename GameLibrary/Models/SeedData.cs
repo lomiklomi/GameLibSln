@@ -21,6 +21,8 @@ namespace GameLibrary.Models
 				Developer s9 = new Developer { Name = "tobyfox" };
 				Developer s10 = new Developer { Name = "Activision Blizzard" };
 				Developer s11 = new Developer { Name = "Valve" };
+				Developer s12 = new Developer { Name = "Riot Games" };
+
 
 				Genre c1 = new Genre { Name = "Shooter" };
 				Genre c2 = new Genre { Name = "Farming Simulator" };
@@ -101,6 +103,24 @@ namespace GameLibrary.Models
 					Name = "Dota 2",
 					Developer = s11,
 					Genre = c6
+				},
+				new Game
+				{
+					Name = "League of legend",
+					Developer = s12,
+					Genre = c6
+				},
+				new Game
+				{
+					Name = "CS:GO",
+					Developer = s12,
+					Genre = c1
+				},
+				new Game
+				{
+					Name = "CS:GO 2",
+					Developer = s12,
+					Genre = c1
 				}
 				);
 				context.SaveChanges();

@@ -16,8 +16,6 @@ builder.Services.AddDbContext<LibDbContext>(opts => {
 builder.Services.AddControllers()
 	.AddNewtonsoftJson().AddXmlDataContractSerializerFormatters();
 
-builder.Services.AddControllers().AddNewtonsoftJson();
-
 builder.Services.Configure<MvcNewtonsoftJsonOptions>(opts => {
 	opts.SerializerSettings.NullValueHandling
 		= Newtonsoft.Json.NullValueHandling.Ignore;
@@ -40,8 +38,6 @@ var app = builder.Build();
 
 app.MapControllers();
 
-app.MapGet("/", () => "Hello World!");
-
 app.UseSwagger();
 app.UseSwaggerUI(options => {
 	options.SwaggerEndpoint("/swagger/v1/swagger.json", "GameLib");
@@ -49,7 +45,6 @@ app.UseSwaggerUI(options => {
 
 var context = app.Services.CreateScope().ServiceProvider
 	.GetRequiredService<LibDbContext>();
-
 SeedData.SeedDatabase(context);
 
 app.Run();

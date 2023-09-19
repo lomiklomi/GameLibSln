@@ -23,17 +23,17 @@ namespace GameLibrary.Migrations
 
             modelBuilder.Entity("GameLibrary.Models.Developer", b =>
                 {
-                    b.Property<long>("DeveloperID")
+                    b.Property<long>("DeveloperId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("DeveloperID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("DeveloperId"));
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("DeveloperID");
+                    b.HasKey("DeveloperId");
 
                     b.ToTable("Developer");
                 });

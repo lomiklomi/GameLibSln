@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GameLibrary.Migrations
 {
     [DbContext(typeof(LibDbContext))]
-    [Migration("20230916192118_Initial")]
+    [Migration("20230919014533_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -26,17 +26,17 @@ namespace GameLibrary.Migrations
 
             modelBuilder.Entity("GameLibrary.Models.Developer", b =>
                 {
-                    b.Property<long>("DeveloperID")
+                    b.Property<long>("DeveloperId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("DeveloperID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("DeveloperId"));
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("DeveloperID");
+                    b.HasKey("DeveloperId");
 
                     b.ToTable("Developer");
                 });

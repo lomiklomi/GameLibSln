@@ -14,13 +14,13 @@ namespace GameLibrary.Migrations
                 name: "Developer",
                 columns: table => new
                 {
-                    DeveloperID = table.Column<long>(type: "bigint", nullable: false)
+                    DeveloperId = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Developer", x => x.DeveloperID);
+                    table.PrimaryKey("PK_Developer", x => x.DeveloperId);
                 });
 
             migrationBuilder.CreateTable(
@@ -53,7 +53,7 @@ namespace GameLibrary.Migrations
                         name: "FK_Game_Developer_DeveloperId",
                         column: x => x.DeveloperId,
                         principalTable: "Developer",
-                        principalColumn: "DeveloperID",
+                        principalColumn: "DeveloperId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Game_Genre_GenreId",
